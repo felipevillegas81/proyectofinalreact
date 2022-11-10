@@ -1,0 +1,15 @@
+.redClass{
+    background: red;
+    border-radius: 35px;
+    color: white;
+
+    z-index: 1
+}
+
+.greenClass{
+    background: #f8c838;
+    border-radius: 35px;
+    color: black;
+
+    z-index: 1
+}
