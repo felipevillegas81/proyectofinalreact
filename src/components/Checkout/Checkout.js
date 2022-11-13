@@ -3,6 +3,8 @@ import { CartContext } from "../../context/CartContext"
 import { getDocs, addDoc, collection, doc, updateDoc, where, query, documentId, writeBatch } from 'firebase/firestore'
 import { db } from '../../service/Firebase'
 
+import Form from "../Form/Form"
+
 const Checkout = () => {
     const [loading, setLoading] = useState(false)
 
@@ -72,7 +74,7 @@ const Checkout = () => {
     }
 
     return(
-        <button style={{margin: "10px"}} className="btn rounded-5 btn-warning" onClick={createOrder}>Comprar</button>
+        <Form />
     )
 }
 
