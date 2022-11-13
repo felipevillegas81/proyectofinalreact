@@ -1,7 +1,10 @@
 import './Form.css'
+import { useState } from 'react';
 import { Formik } from 'formik';
 
 const Form = () => {
+
+    const [purchase, setPurchase] = useState(false)
 
     return(
         <div style={{display: "block", margin: "10px 20px 20px 0px", background: "white"}} className='card text-center col-sm-12'>
@@ -35,6 +38,7 @@ const Form = () => {
                     onSubmit={(values, {resetForm}) => {
                         resetForm();
                         console.log('Se envio formulario');
+                        setPurchase(true)
                     }}
                 >
 
@@ -71,9 +75,9 @@ const Form = () => {
                             {touched.email && errors.email && <div className="error">{errors.email}</div>}
                         </div>
 
-                        <button style={{margin: "10px"}} className="btn rounded-5 btn-warning" >Comprar</button>
+                        <button style={{margin: "10px"}} className="btn rounded-5 btn-warning" >Finalizar Compra</button>
 
-                        <p className='success formcontainer'>La compra fue existosa</p>
+                        {purchase && <p className='success formcontainer'>La compra fue existosa</p>}
                     </form>        
                     )}
                 </Formik>
