@@ -3,7 +3,7 @@ import { CartContext } from "../../context/CartContext"
 import { getDocs, addDoc, collection, doc, updateDoc, where, query, documentId, writeBatch } from 'firebase/firestore'
 import { db } from '../../service/Firebase'
 
-import Form from "../Form/Form"
+import Purshaseform from "../Form/Purshaseform"
 
 const Checkout = () => {
     const [loading, setLoading] = useState(false)
@@ -74,7 +74,7 @@ const Checkout = () => {
     }
 
     return(
-        <Form />
+        <Purshaseform />
     )
 }
 

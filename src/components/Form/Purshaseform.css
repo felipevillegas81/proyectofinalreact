@@ -25,7 +25,6 @@
 
 .form input,
 .form textarea {
-	font-family: 'Open Sans', sans-serif;
 	width: 100%;
 	border-radius: 5px;
 	border: 2px solid #e2e2e2;
@@ -68,7 +67,7 @@
 
 .form .success {
 	text-align: center;
-	font-size: 14px;
+	font-size: 16px;
 	padding-top: 20px;
 	color: #02a802;
 }
