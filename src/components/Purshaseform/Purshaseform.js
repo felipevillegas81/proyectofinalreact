@@ -1,20 +1,31 @@
 import './Purshaseform.css'
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Checkout from '../Checkout/Checkout';
 
 const Purshaseform = () => {
 
     const [purchase, setPurchase] = useState(false)
+
+    const [buyer, setBuyer]= useState([])
+
+    if(buyer.length !== 0){
+        return(
+            <Checkout buyer={buyer}/>
+        )
+    }
 
     return(
         <div style={{display: "block", padding: "10px", margin: "4%", background: "white"}} className='card text-center col-11'>
             <div style={{background: "white"}} className='card-body'>
 
                 <Formik className='formcontainer form'
-                    
                     initialValues={{
                         name: '',
-                        email: ''
+                        email: '',
+                        contry: '',
+                        address: '',
+                        sex:'',
                     }}
 
                     validate={(values) => {
@@ -40,12 +51,22 @@ const Purshaseform = () => {
                     }}
 
                     onSubmit={(values, {resetForm}) => {
-                        resetForm();
-                        console.log('Se envio formulario');
-                        setPurchase(true)
 
-                        setTimeout(() => setPurchase(false)
-                        , 2000)
+                        setBuyer([values])
+                        console.log('Se envio formulario');
+                        console.log(values)
+                        console.log(setBuyer)
+
+                        setTimeout(() => {
+                            setPurchase(true)
+                            resetForm();
+                        }, 2000)
+                        
+                        // if(buyer){
+                        //     return(
+                        //         <Checkout {...values}/>
+                        //     )
+                        // }
                     }}
                 >
 
@@ -102,7 +123,8 @@ const Purshaseform = () => {
                                 <div className="error">{errors.address}</div>
                             )}/>
                         </div>
-
+                        
+                        <div style={{display: "flex", alignContent: "center", alignItems: "center",textAlign: "center", padding: "10px", background: "white"}} className='card col-2'>
                         <div className='formcontainer form-check'>
                             <label className='formcontainer form-check-label' htmlFor='sex'>Sexo: </label>
                             <label className='formcontainer form-check-label' >
@@ -112,8 +134,9 @@ const Purshaseform = () => {
                                 <Field className='formcontainer form-check-input' id='SexH' type='radio' name='sex' value='Hombre'/>Hombre
                             </label>   
                         </div>
+                        </div>
 
-                        <button style={{margin: "10px"}} className="btn rounded-5 btn-warning" >Finalizar Compra</button>
+                        <button style={{margin: "10px"}} type='submit' className="btn rounded-5 btn-warning" >Finalizar Compra</button>
 
                         {purchase && <p className='success formcontainer'>La compra fue existosa, En breve Informaremos el Id de Compra</p>}
                     </Form>        

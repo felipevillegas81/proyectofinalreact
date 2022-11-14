@@ -3,9 +3,8 @@ import { CartContext } from "../../context/CartContext"
 import { getDocs, addDoc, collection, doc, updateDoc, where, query, documentId, writeBatch } from 'firebase/firestore'
 import { db } from '../../service/Firebase'
 
-import Purshaseform from "../Form/Purshaseform"
+const Checkout = ( {buyer} ) => {
 
-const Checkout = () => {
     const [loading, setLoading] = useState(false)
 
     const { total, clearCart } = useContext(CartContext)
@@ -13,16 +12,14 @@ const Checkout = () => {
     const { getCart } = useContext(CartContext)
     const cart = getCart()
 
+    console.log(cart)
+
     const createOrder = async () => {
     setLoading(true)
     try {
     const objOrder = {
-        buyer: {
-            name: 'Andrés Felipe',
-            phone: '3138670321',
-            email: 'felipevillegas81@gmail.com'
-        },
-
+        
+        buyer,
         Items: cart,
         total
     }
@@ -73,8 +70,9 @@ const Checkout = () => {
         return <h1>Su Orden Se esta Generando</h1>
     }
 
+    
     return(
-        <Purshaseform />
+        <button style={{margin: "10px"}} className="btn rounded-5 btn-warning" onClick={createOrder}>Comprar</button>
     )
 }
 

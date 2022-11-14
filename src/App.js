@@ -3,11 +3,13 @@ import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import CartList from './components/CartList/CartList';
+import Checkout from './components/Checkout/Checkout';
+import Purshaseform from './components/Purshaseform/Purshaseform';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { CartContextProvider } from './context/CartContext'
 import { NotificationProvider} from './context/Notification/Notification'
-import Checkout from './components/Checkout/Checkout';
+
 
 function App() {
 
@@ -23,6 +25,7 @@ function App() {
                 <Route path='/detail/:productId' element={<ItemDetailContainer />}/>
                 <Route path='/cart' element={<CartList />}/>
                 <Route path='/checkout' element={<Checkout />}/>
+                <Route path='/purshaseform' element={<Purshaseform />}/>
                 <Route path='*' element={<h1 style={{background: 'white', textAlign: 'center'}}>La Pagina que estas buscando no existe</h1>} />
               </Routes>
           </BrowserRouter>

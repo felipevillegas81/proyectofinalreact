@@ -1,6 +1,7 @@
 import { CartContext  } from '../../context/CartContext'
 import { useContext } from 'react'
 import Cart from '../Cart/Cart'
+import { Link } from 'react-router-dom'
 
 const CartList = () =>{
 
@@ -23,14 +24,19 @@ const CartList = () =>{
     }
 
     return(
-            <div className='container-lg justify-content align-items-center'>
-                <div className='row'>
-                    {cart.map( product =>
-                        <Cart key={product.id} {...product}/>
-                        )
-                    }
+                <div className='container-lg justify-content align-items-center'>
+                    <div className='row'>
+                        {cart.map( product =>
+                            <Cart key={product.id} {...product}/>
+                            )
+                        }
+                    </div>
+                    <div>
+                    <Link className="btn rounded-5 btn-warning" to='/purshaseform'>Finalizar Compra</Link>
+                    </div>
                 </div>
-            </div>
+                
+
     )
 }
 
