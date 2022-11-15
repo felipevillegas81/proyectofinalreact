@@ -84,6 +84,12 @@ import { NotificationContext } from '../../context/Notification/Notification'
                     <p style={{background: "white"}} className="card-text">Stock: {stock}</p>
                 </div>
 
+                <div>
+                    <p style={{background: "white"}} className="card-text">Precio: {price}</p>
+                </div>
+
+
+
                 <div style={{ padding: "20px", background: "white"}}>
                 {
                     quantityToAdd === 0 ? (

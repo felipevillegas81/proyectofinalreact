@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const Item = ( { id, name, description, img } ) => {
+const Item = ( { id, name, description, img, price } ) => {
 
     return(
                 <div style={{background: "white", padding: "10px", margin: "10px"}} className="card text-center">

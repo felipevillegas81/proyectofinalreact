@@ -9,9 +9,11 @@ const Purshaseform = () => {
 
     const [buyer, setBuyer]= useState([])
 
+    const [validation, setValidation]= useState(false)
+
     if(buyer.length !== 0){
         return(
-            <Checkout buyer={buyer}/>
+            <Checkout buyer={buyer} validation={validation}/>
         )
     }
 

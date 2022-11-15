@@ -1,6 +1,10 @@
 import trash from '../../components/assets/icons/trash.png'
+import { useContext } from 'react'
+import { CartContext  } from '../../context/CartContext'
 
 const Cart = ( {id, name, description, quiantity, img, price} ) =>{
+
+    const { removeItem } = useContext(CartContext)
 
     return (
         <div style={{display: "block", margin: "0", background: "white"}} className='card text-center col-sm-6'>
@@ -18,7 +22,7 @@ const Cart = ( {id, name, description, quiantity, img, price} ) =>{
 
                 <p style={{background: "white"}} className="card-text text-secondary">Precio : {price*quiantity}</p>
 
-                <button className="btn rounded-5 btn-warning">Eliminar</button>
+                <button className="btn rounded-5 btn-warning" onClick={removeItem}> Eliminar</button>
             </div>
         </div>
     )

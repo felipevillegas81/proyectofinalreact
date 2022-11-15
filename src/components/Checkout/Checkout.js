@@ -3,14 +3,18 @@ import { CartContext } from "../../context/CartContext"
 import { getDocs, addDoc, collection, doc, updateDoc, where, query, documentId, writeBatch } from 'firebase/firestore'
 import { db } from '../../service/Firebase'
 
-const Checkout = ( {buyer} ) => {
+import { Spinner } from 'react-bootstrap'
+
+const Checkout = ( { buyer } ) => {
 
     const [loading, setLoading] = useState(false)
 
-    const { total, clearCart } = useContext(CartContext)
+    const { total } = useContext(CartContext)
 
-    const { getCart } = useContext(CartContext)
+    const { getCart, clearCart } = useContext(CartContext)
     const cart = getCart()
+
+    const [validate, setValidate] = useState(false)
 
     const createOrder = async () => {
     setLoading(true)
@@ -50,9 +54,10 @@ const Checkout = ( {buyer} ) => {
 
         const orderRef = collection(db, 'orders')
         const orderAdded = await addDoc(orderRef, objOrder)
-
+        setValidate(true)
         console.log(`El Id de su Orden es: ${orderAdded.id}`)
         clearCart()
+        
     } else {
         console.log('Existen productos agregados agotados')
     }
@@ -65,13 +70,33 @@ const Checkout = ( {buyer} ) => {
 }
 
     if(loading) {
-        return <h1>Su Orden Se esta Generando</h1>
+        return (
+            <div className='spinnercontainer'>
+                <Spinner style={{ width: "15rem", height: "15rem" }} animation="border" variant="warning" />
+            </div>
+        )
     }
 
-    
+    if(validate === true){
+        return(
+            <div style={{background: "white", padding: "10px", margin: "10px"}} className="card text-center">
+                <div style={{background: "white"}} className="card-body">
+                    <h4 style={{background: "white"}} className='card-title'>Se Genero Orden No:</h4>
+                    <p style={{background: "white"}} className="card-text text-secondary">Nombre Comprador: {buyer.name}</p>
+                    <p style={{background: "white"}} className="card-text text-secondary">Telefono: {buyer.phone}</p>
+                    <p style={{background: "white"}} className="card-text text-secondary">Correo: {buyer.email}</p>
+                    <p style={{background: "white"}} className="card-text text-secondary">Dirección: {buyer.address}</p>
+                    
+                </div>
+                </div>
+        )
+    }
+
+    if(validate === false)
     return(
-        <button style={{margin: "10px"}} className="btn rounded-5 btn-warning" onClick={createOrder}>Comprar</button>
+        createOrder()
     )
+
 }
 
 export default Checkout
