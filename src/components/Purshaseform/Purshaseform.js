@@ -22,6 +22,7 @@ const Purshaseform = () => {
                 <Formik className='formcontainer form'
                     initialValues={{
                         name: '',
+                        phone: '',
                         email: '',
                         contry: '',
                         address: '',
@@ -35,6 +36,12 @@ const Purshaseform = () => {
                             formerrors.name = 'Ingresa un Nombre'
                         } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)){
                             formerrors.name = 'Ingresa un Nombre Valido (Solo se Admiten Letras y Espacios)'
+                        }
+
+                        if(!values.phone){
+                            formerrors.phone = 'Ingresa un Telefono'
+                        } else if(!/^[0123456789]{10,10}$/.test(values.phone)){
+                            formerrors.phone = 'Ingresa un Telefono Valido (Solo se Admiten Numeros) ( 10 Craracteres)'
                         }
 
                         if(!values.email){
@@ -51,22 +58,13 @@ const Purshaseform = () => {
                     }}
 
                     onSubmit={(values, {resetForm}) => {
-
-                        setBuyer([values])
                         console.log('Se envio formulario');
-                        console.log(values)
-                        console.log(setBuyer)
-
-                        setTimeout(() => {
-                            setPurchase(true)
-                            resetForm();
-                        }, 2000)
-                        
-                        // if(buyer){
-                        //     return(
-                        //         <Checkout {...values}/>
-                        //     )
-                        // }
+                        setPurchase(true)
+                        setTimeout(() => 
+                            setPurchase(false)
+                        , 5000)
+                        resetForm();
+                        setBuyer([values])
                     }}
                 >
 
@@ -84,6 +82,20 @@ const Purshaseform = () => {
                             />
                             <ErrorMessage name='name' component={() =>(
                                 <div className="error">{errors.name}</div>
+                            )}/>
+                        </div>
+
+                        <div className='formcontainer'>
+                            <label className='formcontainer' htmlFor='phone'>Telefono: </label>
+                            <Field 
+                                className='formcontainer' 
+                                type='phone' 
+                                id='phone' 
+                                name='phone' 
+                                placeholder='Ingresa tu Numero de Telefono' 
+                            />
+                            <ErrorMessage name='phone' component={() =>(
+                                <div className="error">{errors.phone}</div>
                             )}/>
                         </div>
 

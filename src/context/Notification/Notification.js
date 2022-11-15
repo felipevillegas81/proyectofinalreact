@@ -5,7 +5,7 @@ const Notification = ( { msg, severity }) =>{
 
 const notificationStyles = {
   position: 'fixed',
-  top: 50,
+  top: 550,
   right: 10,
   padding: '10px 20px 10px 20px',
   background: severity === 'success' ? 'greenClass' : 'redClass',

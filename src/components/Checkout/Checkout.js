@@ -12,8 +12,6 @@ const Checkout = ( {buyer} ) => {
     const { getCart } = useContext(CartContext)
     const cart = getCart()
 
-    console.log(cart)
-
     const createOrder = async () => {
     setLoading(true)
     try {
